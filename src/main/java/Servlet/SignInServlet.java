@@ -20,7 +20,7 @@ public class SignInServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        if (accountService.checkUser(login)) {//сравниваем юзера из аккаунт сервиса и введеного
+        if (login != null && password != null && accountService.checkUser(login)) {
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().println("Authorized: " + login);
         } else {
