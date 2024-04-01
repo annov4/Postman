@@ -21,6 +21,11 @@ public class SignUpServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
+        if (login == null || password == null || login.isEmpty() || password.isEmpty()) { // проверяем наличие логина и пароля
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
         accountService.addNewUser(new User(login, password)); // добавляем в аккаунт сервис
 
         response.setStatus(HttpServletResponse.SC_OK); // возвращаем статус
